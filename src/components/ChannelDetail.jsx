@@ -5,18 +5,21 @@ import { Box } from "@mui/material";
 import {Videos, ChannelCard} from './';
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
+//Changed useEffect function to match new fetchFromAPI function
 const ChannelDetail = () => {
   const [channelDetail, setChannelDetail] = useState(null)
   const [videos, setVideos] = useState([])
   const {id} = useParams()
 
+  console.log("This is the id", id)
+
   console.log(channelDetail, videos)
   useEffect(() => {
-    fetchFromAPI(`channel?id=${id}`)
+    fetchFromAPI('channel/home')
       .then((data) => {      
       
       if (data.meta && data.meta.channelId) {
-        setChannelDetail(data.meta.channelId);
+        setChannelDetail(data.meta);
       } else {
         console.error("Channel ID not found in API response:", data);
       }
@@ -25,7 +28,7 @@ const ChannelDetail = () => {
       console.error("Error fetching channel details:", error);
     });
     
-    fetchFromAPI(`search?query=${id}&type=video&sort=date`)
+    fetchFromAPI('search', {query: id, type: 'video', sort: 'date'})
       .then((data) => setVideos(data.data))
   }, [id])
 

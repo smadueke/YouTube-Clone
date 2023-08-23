@@ -12,8 +12,19 @@ const options = {
   }
 };
 
-export const fetchFromAPI = async (url) => {
-    const {data} = await axios.get(`${BASE_URL}/${url}`, options);
-
-    return data;
+//Changed the fetchFrom API function
+export const fetchFromAPI = async (endpoint, params = {}) => {
+  const apiUrl = `${BASE_URL}/${endpoint}`; // Construct the URL
+  const queryParms = new URLSearchParams(params)
+  const fullAPIURL = apiUrl + (queryParms.toString() ? `?${queryParms.toString()}` : '')
+  
+  console.log('Constructed API URL:', fullAPIURL); // Log the constructed URL
+  
+  try {
+      const {data} = await axios.get(fullAPIURL, options);
+      return data;
+  } catch (error) {
+      console.error('API Error:', error);
+      throw error;
+  }
 }
