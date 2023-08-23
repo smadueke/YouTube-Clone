@@ -12,11 +12,21 @@ const ChannelDetail = () => {
 
   console.log(channelDetail, videos)
   useEffect(() => {
-    fetchFromAPI(`channels?part=snippet&id=${id}`)
-      .then((data) => setChannelDetail(data?.items[0]))
+    fetchFromAPI(`channel?id=${id}`)
+      .then((data) => {      
+      
+      if (data.meta && data.meta.channelId) {
+        setChannelDetail(data.meta.channelId);
+      } else {
+        console.error("Channel ID not found in API response:", data);
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching channel details:", error);
+    });
     
-    fetchFromAPI(`search?channelId=${id}&part=snippet&order=date`)
-      .then((data) => setVideos(data?.items))
+    fetchFromAPI(`search?query=${id}&type=video&sort=date`)
+      .then((data) => setVideos(data.data))
   }, [id])
 
   

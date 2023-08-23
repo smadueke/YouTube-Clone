@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const BASE_URL = 'https://youtube-v31.p.rapidapi.com'; //Change this
+const BASE_URL = 'https://yt-api.p.rapidapi.com';
 
 const options = {
   params: {
@@ -8,7 +8,7 @@ const options = {
   },
   headers: {
     'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
-    'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com' //Change this
+    'X-RapidAPI-Host': 'yt-api.p.rapidapi.com'
   }
 };
 
