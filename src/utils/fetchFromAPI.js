@@ -18,6 +18,8 @@ export const fetchFromAPI = async (endpoint, params = {}) => {
   const queryParms = new URLSearchParams(params)
   const fullAPIURL = apiUrl + (queryParms.toString() ? `?${queryParms.toString()}` : '')
   
+  console.log('The query params are: ', queryParms.toString())
+  console.log('The params are: ', params)
   console.log('Constructed API URL:', fullAPIURL); // Log the constructed URL
   
   try {

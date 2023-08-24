@@ -6,11 +6,14 @@ import { demoThumbnailUrl, demoVideoUrl, demoVideoTitle, demoChannelUrl, demoCha
 //Changed all 'snippets' to the destructred video counterparts
 //Thumbnails in this one is an array so we the url was retireved from the first element in the array
 const VideoCard = ({video: {videoId, title, thumbnail, channelTitle, channelId}}) => {
+    var num = thumbnail.length-1
+
   return (
     <Card sx={{width:{md: '320px', xs: '100%', boxShadow: 'none', borderRadius: 0}}}>
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
+
             <CardMedia 
-                image={thumbnail[0]?.url}
+                image={thumbnail[num]?.url}
                 alt={title}
                 sx={{width: 358, height: 180}}/>
         </Link>

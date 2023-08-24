@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, CardMedia, CardContent} from "@mui/material";
 
 import {Videos, ChannelCard} from './';
 import { fetchFromAPI } from "../utils/fetchFromAPI";
@@ -15,11 +15,13 @@ const ChannelDetail = () => {
 
   console.log(channelDetail, videos)
   useEffect(() => {
-    fetchFromAPI('channel/home')
-      .then((data) => {      
-      
+    fetchFromAPI('channel/home', {id: id})
+      .then((data) => {
+        console.log("API Response:", data); // Log the API response
+        console.log("I made it this far")
       if (data.meta && data.meta.channelId) {
-        setChannelDetail(data.meta);
+        console.log("Channel ID has been set")
+        setChannelDetail(data.meta); 
       } else {
         console.error("Channel ID not found in API response:", data);
       }
@@ -28,21 +30,22 @@ const ChannelDetail = () => {
       console.error("Error fetching channel details:", error);
     });
     
-    fetchFromAPI('search', {query: id, type: 'video', sort: 'date'})
+    fetchFromAPI('channel/videos', {id: id, type: 'video', sort: 'date'})
       .then((data) => setVideos(data.data))
   }, [id])
 
-  
+  console.log('The channelDetail is this:', channelDetail)
 
   return (
     <Box minHeight = "95vh">
       <Box>
-        <div style = {{
-          background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)',
-          zIndex: 10,
-          height: '300px'
-        }}
-        />
+
+        <CardContent sx ={{display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', color: '#fff'}}>
+          <CardMedia 
+              image={channelDetail?.banner[2]?.url}
+              sx={{borderRadius: '0%', height: '350px', width: 'auto', mb: 2, border: '1px solid #e3e3e3'}}
+          />
+        </CardContent>
         <ChannelCard channelDetail={channelDetail} marginTop="-125px" />
       </Box>
       <Box display="flex" p="2">

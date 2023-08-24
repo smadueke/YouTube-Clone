@@ -4,13 +4,14 @@ import {SideBar, Videos} from './';
 import { fetchFromAPI } from '../utils/fetchFromAPI';
 import { useParams } from "react-router-dom";
 
+//Updated the useEffect to the new API fetch structure
 const SearchFeed = () => {
   const [selectedCategory, setSelectedCategory] = useState('New')
   const [videos, setVideos] = useState([])
   const {searchTerm} = useParams()
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) => setVideos(data.items))
+    fetchFromAPI('search', {query: searchTerm}).then((data) => setVideos(data.data))
   }, [searchTerm]);
 
 
