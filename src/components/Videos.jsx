@@ -2,7 +2,8 @@ import { Stack, Box } from "@mui/material"
 
 import {VideoCard, ChannelCard} from "./"
 
-const Videos = ({ videos }) => {
+//Added channelTitle into the params since the API doesn't pass it into 'videos' consistently
+const Videos = ({ videos, direction, channelTitle }) => {
   console.log('Videos:', videos);
 
   if (!videos) {
@@ -11,13 +12,13 @@ const Videos = ({ videos }) => {
   }
 
   return (
-    <Stack direction="row" flexWrap="wrap" justifyContent="start" gap={2}>
+    <Stack direction={direction || "row"} flexWrap="wrap" justifyContent="start" gap={2}>
       {videos.map((item, idx) => {
         console.log('Item:', item);
         return (
           <Box key={idx}>
             {item.type === "video" && item.videoId && (
-              <VideoCard video={item} />
+              <VideoCard video={item} channelTitle2={channelTitle}/>
             )}
             {item.type === "channel" && item.channelId && (
               <ChannelCard channelDetail={item} />

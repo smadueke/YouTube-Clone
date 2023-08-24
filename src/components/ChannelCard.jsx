@@ -1,7 +1,7 @@
 import { Box, CardContent, CardMedia, Typography } from "@mui/material"
 import { CheckCircle } from "@mui/icons-material"
 import { Link } from 'react-router-dom'
-import { demoChannelUrl, demoProfilePicture, demoThumbnailUrl } from "../utils/constants"
+import { demoProfilePicture } from "../utils/constants"
 
 //No snippet or id in this API so those are removed
 //Removed ParseInt for subscriber count as this API gives a string

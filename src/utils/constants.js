@@ -11,8 +11,9 @@ import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
+import YT_Logo from './YT_Logo.png';
 
-export const logo = 'https://i.ibb.co/s9Qys2j/logo.png';
+export const logo = YT_Logo;
 
 export const categories = [
   { name: 'New', icon: <HomeIcon />, },

@@ -35,6 +35,8 @@ const ChannelDetail = () => {
   }, [id])
 
   console.log('The channelDetail is this:', channelDetail)
+  console.log('Video data: ', videos)
+  console.log('the title is', channelDetail?.title)
 
   return (
     <Box minHeight = "95vh">
@@ -50,7 +52,7 @@ const ChannelDetail = () => {
       </Box>
       <Box display="flex" p="2">
         <Box sx={{mr: {sm: '100px' }}} />
-        <Videos videos ={videos} />
+        <Videos videos ={videos} channelTitle = {channelDetail?.title} />
       </Box>
 
     </Box>
